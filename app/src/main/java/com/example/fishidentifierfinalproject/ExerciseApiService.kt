@@ -17,11 +17,11 @@ private val retrofit = Retrofit.Builder().addConverterFactory(MoshiConverterFact
 interface ExersizeApiService {
     @Headers("api-key: " + "+QtuG85lSaP629V2X9p2qg==sJrk0IA1ss0v3NtG")
     @GET(QUERY_STRING)
-    fun getGoogleBooks(): Call<USGSResponse>
+    fun getGoogleBooks(): Call<ExerciseResponse>
 }
 
-object GoogleBooksApi {
-    val googleBooksApi: ExersizeApiService by lazy {
+object ExerciseApi {
+    val exerciseApi: ExersizeApiService by lazy {
         retrofit.create(ExersizeApiService::class.java)
     }
 }

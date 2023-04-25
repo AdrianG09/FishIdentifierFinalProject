@@ -28,7 +28,7 @@ class MainFragment : Fragment() {
 
         })
 
-        viewModel.getGoogleBooks()
+        viewModel.getExercises()
 
         return binding.root
     }
