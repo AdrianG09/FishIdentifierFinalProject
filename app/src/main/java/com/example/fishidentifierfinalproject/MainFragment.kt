@@ -25,7 +25,6 @@ class MainFragment : Fragment() {
         viewModel.response.observe(viewLifecycleOwner, Observer { exerciseList ->
             val myAdapter = ExerciseAdapter(exerciseList)
             binding.recyclerView.adapter = myAdapter
-
         })
 
         viewModel.getExercises()

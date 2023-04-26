@@ -15,7 +15,7 @@ class ExerciseViewModel: ViewModel() {
         get() = _response
 
     fun getExercises() {
-        val request = ExerciseApi.exerciseApi.getGoogleBooks()
+        val request = ExerciseApi.exerciseApi.getExercises()
         request.enqueue(object: Callback<ExerciseResponse> {
             override fun onFailure(call: Call<ExerciseResponse>, t: Throwable) {
                 Log.d("RESPONSE", "Failure: " + t.message)

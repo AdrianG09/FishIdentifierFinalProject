@@ -3,6 +3,7 @@ package com.example.fishidentifierfinalproject
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fishidentifierfinalproject.databinding.ListItemLayoutBinding
 
 class ExerciseAdapter(val exercises: List<Exercise>) : RecyclerView.Adapter<ExerciseViewHolder>() {
 
@@ -15,7 +16,7 @@ class ExerciseAdapter(val exercises: List<Exercise>) : RecyclerView.Adapter<Exer
 
     override fun onBindViewHolder(holder: ExerciseViewHolder, position: Int) {
         val exercise = exercises[position]
-        holder.bindGoogleBook(exercise)
+        holder.bindExercise(exercise)
     }
 
     override fun getItemCount(): Int {
