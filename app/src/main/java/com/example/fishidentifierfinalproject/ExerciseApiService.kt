@@ -16,8 +16,8 @@ private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 private val retrofit = Retrofit.Builder().addConverterFactory(MoshiConverterFactory.create(moshi)).baseUrl(BASE_URL).build()
 
 interface ExerciseApiService {
+    @Headers("api-key: " + "ElODhmtfQnr5FleTYDmJhEkou1PQcUrPiGstVuPb")
     @GET(QUERY_STRING)
-    @Headers("Authorization: token ${"ElODhmtfQnr5FleTYDmJhEkou1PQcUrPiGstVuPb"}")
     fun getExercises(): Call<ExerciseResponse>
 }
 
