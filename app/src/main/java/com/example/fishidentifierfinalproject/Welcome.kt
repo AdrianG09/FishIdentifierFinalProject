@@ -25,7 +25,13 @@ class Welcome : Fragment() {
 
         dbRef = Firebase.database.reference
 
-
+        binding.signUpButton.setOnClickListener {
+            val name = binding.editTextTextPersonName.text.toString()
+            val weight = binding.weightInput.toString().toInt()
+            val height = binding.heightInput.toString().toInt()
+            val user = User(name, weight, height)
+            dbRef.child("user").push().setValue(user)
+        }
 
         return binding.root
     }
