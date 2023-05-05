@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/welcome"
-        android:name="com.example.fishidentifierfinalproject.Welcome"
+        android:name="com.example.fishidentifierfinalproject.WelcomeFragment"
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action

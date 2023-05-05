@@ -1,18 +1,19 @@
 package com.example.fishidentifierfinalproject
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import com.example.fishidentifierfinalproject.databinding.FragmentLoginBinding
 import com.example.fishidentifierfinalproject.databinding.FragmentWelcomeBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
-class Welcome : Fragment() {
+class LoginFragment : Fragment() {
 
-    private var _binding: FragmentWelcomeBinding? = null
+    private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
     lateinit var dbRef : DatabaseReference
@@ -21,17 +22,11 @@ class Welcome : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentWelcomeBinding.inflate(inflater, container, false)
+        _binding = FragmentLoginBinding.inflate(inflater, container, false)
 
         dbRef = Firebase.database.reference
 
-        binding.signUpButton.setOnClickListener {
-            val name = binding.editTextTextPersonName.text.toString()
-            val weight = binding.weightInput.toString().toInt()
-            val height = binding.heightInput.toString().toInt()
-            val user = User(name, weight, height)
-            dbRef.child("user").push().setValue(user)
-        }
+
 
         return binding.root
     }
