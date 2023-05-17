@@ -10,6 +10,7 @@ import com.example.fishidentifierfinalproject.databinding.FragmentWelcomeBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.auth.FirebaseAuth
 
 class WelcomeFragment : Fragment() {
 
@@ -27,8 +28,30 @@ class WelcomeFragment : Fragment() {
             binding.root.findNavController().navigate(action)
         }
 
+        binding.signUpButton.setOnClickListener {
+            val action = WelcomeFragmentDirections.actionWelcomeToSignUpFragment()
+            binding.root.findNavController().navigate(action)
+        }
+
+        binding.continueGuestButton.setOnClickListener {
+            val action = WelcomeFragmentDirections.actionWelcomeToMainFragment()
+            binding.root.findNavController().navigate(action)
+        }
+
         return binding.root
     }
+
+    public override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = FirebaseAuth.getInstance()
+        if (currentUser != null) {
+            val action = WelcomeFragmentDirections.actionWelcomeToMainFragment()
+            binding.root.findNavController().navigate(action)
+        }
+        reload()
+    }
+
 
     override fun onDestroyView() {
         super.onDestroyView()
