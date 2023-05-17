@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.example.fishidentifierfinalproject.databinding.FragmentWelcomeBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
@@ -21,7 +22,10 @@ class WelcomeFragment : Fragment() {
     ): View? {
         _binding = FragmentWelcomeBinding.inflate(inflater, container, false)
 
-
+        binding.logInButton.setOnClickListener {
+            val action = WelcomeFragmentDirections.actionWelcomeToLoginFragment()
+            binding.root.findNavController().navigate(action)
+        }
 
         return binding.root
     }
