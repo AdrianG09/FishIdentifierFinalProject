@@ -46,8 +46,8 @@ class WelcomeFragment : Fragment() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
-            val action = WelcomeFragmentDirections.actionWelcomeToMainFragment()
-            binding.root.findNavController().navigate(action)
+//            val action = WelcomeFragmentDirections.actionWelcomeToMainFragment()
+//            binding.root.findNavController().navigate(action)
         }
     }
 

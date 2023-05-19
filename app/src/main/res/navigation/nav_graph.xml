@@ -24,7 +24,11 @@
         android:id="@+id/mainFragment"
         android:name="com.example.fishidentifierfinalproject.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_welcome"
+            app:destination="@id/welcome" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.fishidentifierfinalproject.LoginFragment"
