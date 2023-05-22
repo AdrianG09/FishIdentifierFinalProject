@@ -16,18 +16,11 @@ class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: ExerciseViewModel by viewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-
-        viewModel.response.observe(viewLifecycleOwner, Observer { exerciseList ->
-            val myAdapter = ExerciseAdapter(exerciseList)
-            binding.recyclerView.adapter = myAdapter
-        })
 
         binding.temp.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
@@ -36,8 +29,6 @@ class MainFragment : Fragment() {
         }
 
         setHasOptionsMenu(true)
-
-        viewModel.getExercises()
 
         return binding.root
     }
