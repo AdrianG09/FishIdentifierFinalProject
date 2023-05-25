@@ -5,15 +5,23 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.fishidentifierfinalproject.databinding.FragmentChestBinding
+import com.example.fishidentifierfinalproject.databinding.FragmentMainBinding
 
 class ChestFragment : Fragment() {
+
+    private var _binding: FragmentChestBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_chest, container, false)
+        _binding = FragmentChestBinding.inflate(inflater, container, false)
+
+
+
+        return binding.root
     }
 
 }

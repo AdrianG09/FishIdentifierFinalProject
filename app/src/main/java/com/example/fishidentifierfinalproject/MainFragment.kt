@@ -16,21 +16,11 @@ class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
-    val exerciseList = listOf(
-        Exercise()
-    )
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-
-        binding.temp.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            val action = MainFragmentDirections.actionMainFragmentToWelcome()
-            binding.root.findNavController().navigate(action)
-        }
 
         setHasOptionsMenu(true)
 
@@ -45,6 +35,8 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         FirebaseAuth.getInstance().signOut()
         Toast.makeText(context, "SIGNED OUT", Toast.LENGTH_SHORT).show()
+        val action = MainFragmentDirections.actionMainFragmentToWelcome()
+        binding.root.findNavController().navigate(action)
         return NavigationUI.onNavDestinationSelected(item, requireView().findNavController()) || super.onOptionsItemSelected(item)
     }
 

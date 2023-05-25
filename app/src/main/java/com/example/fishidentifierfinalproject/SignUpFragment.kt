@@ -58,6 +58,16 @@ class SignUpFragment : Fragment() {
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            val action = SignUpFragmentDirections.actionSignUpFragmentToMainFragment()
+            binding.root.findNavController().navigate(action)
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
