@@ -35,8 +35,7 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         FirebaseAuth.getInstance().signOut()
         Toast.makeText(context, "SIGNED OUT", Toast.LENGTH_SHORT).show()
-        val action = MainFragmentDirections.actionMainFragmentToWelcome()
-        binding.root.findNavController().navigate(action)
+        binding.root.findNavController().popBackStack()
         return NavigationUI.onNavDestinationSelected(item, requireView().findNavController()) || super.onOptionsItemSelected(item)
     }
 

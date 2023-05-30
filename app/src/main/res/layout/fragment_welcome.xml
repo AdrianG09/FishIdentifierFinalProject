@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D9E7F9"
+    android:id="@+id/welcomeScreen"
     tools:context=".WelcomeFragment">
 
 
