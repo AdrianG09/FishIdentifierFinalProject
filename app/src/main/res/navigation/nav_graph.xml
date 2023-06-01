@@ -11,28 +11,23 @@
         android:label="fragment_welcome"
         tools:layout="@layout/fragment_welcome" >
         <action
-            android:id="@+id/action_welcome_to_mainFragment"
-            app:destination="@id/mainFragment" />
-        <action
             android:id="@+id/action_welcome_to_loginFragment"
             app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_welcome_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_welcome_to_exerciseListFragment"
+            app:destination="@id/exerciseListFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.example.fishidentifierfinalproject.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.fishidentifierfinalproject.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            android:id="@+id/action_loginFragment_to_exerciseListFragment"
+            app:destination="@id/exerciseListFragment" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -40,7 +35,30 @@
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
         <action
-            android:id="@+id/action_signUpFragment_to_mainFragment"
+            android:id="@+id/action_signUpFragment_to_exerciseListFragment"
+            app:destination="@id/exerciseListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/exerciseListFragment"
+        android:name="com.example.fishidentifierfinalproject.ExerciseListFragment"
+        android:label="fragment_exercise_list"
+        tools:layout="@layout/fragment_exercise_list" >
+        <action
+            android:id="@+id/action_exerciseListFragment_to_muscleChooseFragment2"
+            app:destination="@id/muscleChooseFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/muscleChooseFragment2"
+        android:name="com.example.fishidentifierfinalproject.MuscleChooseFragment"
+        android:label="fragment_muscle_choose"
+        tools:layout="@layout/fragment_muscle_choose" >
+        <action
+            android:id="@+id/action_muscleChooseFragment2_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.fishidentifierfinalproject.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" />
 </navigation>

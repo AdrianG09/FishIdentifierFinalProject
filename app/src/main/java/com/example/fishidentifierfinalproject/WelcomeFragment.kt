@@ -34,7 +34,7 @@ class WelcomeFragment : Fragment() {
         }
 
         binding.continueGuestButton.setOnClickListener {
-            val action = WelcomeFragmentDirections.actionWelcomeToMainFragment()
+            val action = WelcomeFragmentDirections.actionWelcomeToExerciseListFragment()
             binding.root.findNavController().navigate(action)
         }
 
@@ -46,7 +46,7 @@ class WelcomeFragment : Fragment() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
-            val action = WelcomeFragmentDirections.actionWelcomeToMainFragment()
+            val action = WelcomeFragmentDirections.actionWelcomeToExerciseListFragment()
             binding.root.findNavController().navigate(action)
         }
     }

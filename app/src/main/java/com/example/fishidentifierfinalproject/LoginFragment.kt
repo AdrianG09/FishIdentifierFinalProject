@@ -40,7 +40,7 @@ class LoginFragment : Fragment() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInWithEmail:success")
                         val user = auth.currentUser
-                        val action = LoginFragmentDirections.actionLoginFragmentToMainFragment()
+                        val action = LoginFragmentDirections.actionLoginFragmentToExerciseListFragment()
                         binding.root.findNavController().navigate(action)
                     } else {
                         // If sign in fails, display a message to the user.
@@ -64,7 +64,7 @@ class LoginFragment : Fragment() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
-            val action = LoginFragmentDirections.actionLoginFragmentToMainFragment()
+            val action = LoginFragmentDirections.actionLoginFragmentToExerciseListFragment()
             binding.root.findNavController().navigate(action)
         }
     }

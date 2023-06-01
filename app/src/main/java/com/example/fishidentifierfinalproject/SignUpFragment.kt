@@ -41,7 +41,7 @@ class SignUpFragment : Fragment() {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "createUserWithEmail:success")
                         val user = auth.currentUser
-                        val action = SignUpFragmentDirections.actionSignUpFragmentToMainFragment()
+                        val action = SignUpFragmentDirections.actionSignUpFragmentToExerciseListFragment()
                         binding.root.findNavController().navigate(action)
 //                        Firebase.database.getReference("/user" + "/exerciseList").setValue()
                     } else {
@@ -64,7 +64,7 @@ class SignUpFragment : Fragment() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
-            val action = SignUpFragmentDirections.actionSignUpFragmentToMainFragment()
+            val action = SignUpFragmentDirections.actionSignUpFragmentToExerciseListFragment()
             binding.root.findNavController().navigate(action)
         }
     }
