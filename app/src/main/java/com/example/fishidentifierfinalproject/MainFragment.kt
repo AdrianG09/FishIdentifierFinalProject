@@ -22,6 +22,9 @@ class MainFragment : Fragment() {
     ): View? {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
 
+        val args = ReplyFragmentArgs.fromBundle(requireArguments())
+        binding.messageTextview.text = args.messageArg
+
         setHasOptionsMenu(true)
 
         return binding.root
