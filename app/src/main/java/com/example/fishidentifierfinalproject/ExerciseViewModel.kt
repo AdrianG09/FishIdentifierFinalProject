@@ -6,6 +6,10 @@ import androidx.lifecycle.ViewModel
 
 class ExerciseViewModel : ViewModel() {
 
+    private val _userList = listOf<Exercise>()
+    val userList : List<Exercise>
+        get() = _userList
+
     //    finished this list (4 bi, 4 tri, 2 forearm) = 10 exercise
     private val _armsList = listOf(
         Exercise("Incline Hammer Curls", "Biceps", "Dumbbell", "Beginner", R.string.incline_hammer_curl_instruction.toString()),

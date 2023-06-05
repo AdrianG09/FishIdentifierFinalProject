@@ -33,11 +33,6 @@ class WelcomeFragment : Fragment() {
             binding.root.findNavController().navigate(action)
         }
 
-        binding.continueGuestButton.setOnClickListener {
-            val action = WelcomeFragmentDirections.actionWelcomeToExerciseListFragment()
-            binding.root.findNavController().navigate(action)
-        }
-
         return binding.root
     }
 
@@ -50,7 +45,6 @@ class WelcomeFragment : Fragment() {
             binding.root.findNavController().navigate(action)
         }
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

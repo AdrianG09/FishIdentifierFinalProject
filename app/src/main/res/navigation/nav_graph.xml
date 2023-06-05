@@ -60,5 +60,14 @@
         android:id="@+id/mainFragment"
         android:name="com.example.fishidentifierfinalproject.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_exerciseListFragment"
+            app:destination="@id/exerciseListFragment"
+            app:popUpTo="@+id/exerciseListFragment"
+            app:popUpToInclusive="true"/>
+        <argument
+            android:name="muscleType"
+            app:argType="string" />
+    </fragment>
 </navigation>
