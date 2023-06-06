@@ -63,4 +63,9 @@ class ExerciseViewModel : ViewModel() {
         Firebase.database.getReference("users/" + FirebaseAuth.getInstance().currentUser!!.uid + "/exerciseList").setValue(_exerciseList)
     }
 
+    fun clearList() {
+        _exerciseList.clear()
+        Firebase.database.getReference("users/" + FirebaseAuth.getInstance().currentUser!!.uid + "/exerciseList").setValue(_exerciseList)
+    }
+
 }

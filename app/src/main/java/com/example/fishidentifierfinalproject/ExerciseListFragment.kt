@@ -35,6 +35,10 @@ class ExerciseListFragment : Fragment() {
             binding.root.findNavController().navigate(action)
         }
 
+        binding.clearAllButton.setOnClickListener {
+            viewModel.clearList()
+        }
+
         val adapter = ExerciseAdapter(viewModel.exerciseList)
         binding.recyclerView.adapter = adapter
 
@@ -51,6 +55,7 @@ class ExerciseListFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         FirebaseAuth.getInstance().signOut()
         Toast.makeText(context, "SIGNED OUT", Toast.LENGTH_SHORT).show()
+        viewModel.clearList()
         binding.root.findNavController().popBackStack()
         return NavigationUI.onNavDestinationSelected(item, requireView().findNavController()) || super.onOptionsItemSelected(item)
     }
