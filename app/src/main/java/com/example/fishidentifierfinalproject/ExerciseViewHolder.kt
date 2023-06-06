@@ -1,28 +1,34 @@
 package com.example.fishidentifierfinalproject
 
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fishidentifierfinalproject.databinding.ListItemLayoutBinding
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class ExerciseViewHolder(val binding: ListItemLayoutBinding) : RecyclerView.ViewHolder(binding.root) {
 
     private lateinit var currentExercise: Exercise
 
-//    private val viewModel: ExerciseViewModel by activityViewModels()
-
-    init {
-        binding.root.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_mainFragment_to_exerciseListFragment)
-        }
-    }
+//    init {
+//        binding.root.setOnClickListener { view ->
+//            view.findNavController().navigateUp()
+//        }
+//    }
 
     fun bindExercise(exercise: Exercise) {
         currentExercise = exercise
 
         binding.nameText.text = currentExercise.name
-        binding.muscleText.text = currentExercise.muscle
-        binding.equipmentText.text = currentExercise.equipment
+        binding.muscleText.text = currentExercise.reps.toString()
+        binding.equipmentText.text = currentExercise.sets.toString()
     }
 
 }

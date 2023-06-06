@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.fishidentifierfinalproject.databinding.FragmentLoginBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -24,6 +25,8 @@ class LoginFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     lateinit var dbRef : DatabaseReference
 
+    private val viewModel: ExerciseViewModel by activityViewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,6 +42,7 @@ class LoginFragment : Fragment() {
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInWithEmail:success")
+                        viewModel.setExerciseInfo()
                         val user = auth.currentUser
                         val action = LoginFragmentDirections.actionLoginFragmentToExerciseListFragment()
                         binding.root.findNavController().navigate(action)
@@ -64,6 +68,7 @@ class LoginFragment : Fragment() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
+            viewModel.setExerciseInfo()
             val action = LoginFragmentDirections.actionLoginFragmentToExerciseListFragment()
             binding.root.findNavController().navigate(action)
         }

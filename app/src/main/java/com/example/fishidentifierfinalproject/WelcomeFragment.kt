@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import com.example.fishidentifierfinalproject.databinding.FragmentWelcomeBinding
 import com.google.firebase.database.DatabaseReference
@@ -16,6 +17,8 @@ class WelcomeFragment : Fragment() {
 
     private var _binding: FragmentWelcomeBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: ExerciseViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +44,7 @@ class WelcomeFragment : Fragment() {
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
+            viewModel.setExerciseInfo()
             val action = WelcomeFragmentDirections.actionWelcomeToExerciseListFragment()
             binding.root.findNavController().navigate(action)
         }

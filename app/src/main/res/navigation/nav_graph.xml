@@ -44,30 +44,12 @@
         android:label="fragment_exercise_list"
         tools:layout="@layout/fragment_exercise_list" >
         <action
-            android:id="@+id/action_exerciseListFragment_to_muscleChooseFragment2"
-            app:destination="@id/muscleChooseFragment2" />
-    </fragment>
-    <fragment
-        android:id="@+id/muscleChooseFragment2"
-        android:name="com.example.fishidentifierfinalproject.MuscleChooseFragment"
-        android:label="fragment_muscle_choose"
-        tools:layout="@layout/fragment_muscle_choose" >
-        <action
-            android:id="@+id/action_muscleChooseFragment2_to_mainFragment"
+            android:id="@+id/action_exerciseListFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.fishidentifierfinalproject.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
-        <action
-            android:id="@+id/action_mainFragment_to_exerciseListFragment"
-            app:destination="@id/exerciseListFragment"
-            app:popUpTo="@+id/exerciseListFragment"
-            app:popUpToInclusive="true"/>
-        <argument
-            android:name="muscleType"
-            app:argType="string" />
-    </fragment>
+        tools:layout="@layout/fragment_main" />
 </navigation>

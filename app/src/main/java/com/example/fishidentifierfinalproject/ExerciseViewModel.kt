@@ -1,53 +1,66 @@
 package com.example.fishidentifierfinalproject
 
+import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class ExerciseViewModel : ViewModel() {
 
-    private val _userList = listOf<Exercise>()
-    val userList : List<Exercise>
-        get() = _userList
+//    private val _name = ""
+//    var name: String = ""
+//        get() = _name
+//
+//    private val _reps = 0
+//    var reps: Int = 0
+//        get() = _reps
+//
+//    private val _sets = 0
+//    var sets: Int = 0
+//        get() = _sets
 
-    //    finished this list (4 bi, 4 tri, 2 forearm) = 10 exercise
-    private val _armsList = listOf(
-        Exercise("Incline Hammer Curls", "Biceps", "Dumbbell", "Beginner", R.string.incline_hammer_curl_instruction.toString()),
-        Exercise("Wide-Grip Barbell Curl", "Biceps", "Barbell", "Beginner", R.string.wide_grip_bbcurl_instructions.toString()),
-        Exercise("Flexor Incline Dumbbell Curls", "Biceps", "Dumbbell", "Beginner", R.string.flexor_db_curl_instruction.toString()),
-        Exercise("Concentration Curl", "Biceps", "Dumbbell", "Intermediate", R.string.concentrationcurl_instrcutions.toString()),
-        Exercise("Triceps Dip", "Triceps", "Body", "Intermediate", R.string.dip_instruction.toString()),
-        Exercise("Cable V-Bar Push-Down", "Triceps", "Cable", "Intermediate", R.string.cablevbar_instruction.toString()),
-        Exercise("EZ-Bar Skullcrusher", "Triceps", "EZ Curl Bar", "Intermediate", R.string.skullcrusher_instruction.toString()),
-        Exercise("Single-Arm Cable Triceps Extension", "Triceps", "Cable", "Intermediate", R.string.cabletricep_instruction.toString()),
-        Exercise("Seated One-Arm Dumbbell Palms-Up Wrist Curl", "Forearms", "Dumbbell", "Beginner", R.string.wristcurl_instruction.toString()),
-        Exercise("Standing Behind The Back Wrist Curl", "Forearms", "Barbell", "Beginner", R.string.btbwrist_instruction.toString())
-    )
-    val armsList : List<Exercise>
-        get() = _armsList
+    private var _exerciseList = mutableListOf<Exercise>()
+    val exerciseList : MutableList<Exercise>
+        get() = _exerciseList
 
-    //    lower back, middle back, traps, lats (2 done)
-    private val _backList = listOf(
-        Exercise("Weighted Pull-Up", "Lats", "Dip Belt", "Intermediate", R.string.weightedpu_instruction.toString()),
-        Exercise("Close-Grip Front Lat Pulldown", "Lats", "Cable", "Intermediate", R.string.cglatpd_instruction.toString())
-    )
-    val backList : List<Exercise>
-        get() = _backList
+//    private var _exerciseInfo = mutableListOf<Exercise>()
+//    val exerciseInfo : List<Exercise>
+//        get() = _exerciseInfo
 
-    //    calves (2 done), glutes, hamstrings, quadriceps
-    private val _legsList = listOf(
-        Exercise("Smith Machine Calf Raise", "Calves", "Machine", "Intermediate", R.string.smithcr_instruction.toString()),
-        Exercise("Seated Calf Raise", "Calves", "Machine", "Intermediate", R.string.sittingcr_instruction.toString())
-    )
-    val legsList : List<Exercise>
-        get() = _legsList
+    var temp = mutableListOf<Exercise>()
 
-    //    first 2 from api done, go in order of api
-    private val _chestList = listOf(
-        Exercise("Dumbbell Bench Press", "Chest", "Dumbbell", "Intermediate", R.string.dbbenchpress_instruction.toString()),
-        Exercise("Pushups", "Chest", "Body", "Intermediate", R.string.pushup_instruction.toString())
-    )
-    val chestList : List<Exercise>
-        get() = _chestList
+    fun setExerciseInfo() {
+        Firebase.database.reference.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val userExerciseInfo = dataSnapshot.child("users")
+                    .child(FirebaseAuth.getInstance().uid.toString())
+                    .child("exerciseList").children
+
+                for (fireBaseInfo in userExerciseInfo) {
+                    val name = fireBaseInfo.child("name").getValue().toString()
+                    val reps = fireBaseInfo.child("reps").getValue().toString().toInt()
+                    val sets = fireBaseInfo.child("sets").getValue().toString().toInt()
+                    val currentUserExerciseInfo = Exercise(name, reps, sets)
+                    temp.add(currentUserExerciseInfo)
+                }
+                _exerciseList = temp
+                temp = mutableListOf()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.w("Exercise", "Failed to read value.", error.toException())
+            }
+        })
+    }
+
+    fun addNew(exercise : Exercise) {
+        _exerciseList.add(exercise)
+        Firebase.database.getReference("users/" + FirebaseAuth.getInstance().currentUser!!.uid + "/exerciseList").setValue(_exerciseList)
+    }
 
 }
