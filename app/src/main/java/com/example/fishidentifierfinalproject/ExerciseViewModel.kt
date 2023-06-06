@@ -12,34 +12,16 @@ import com.google.firebase.ktx.Firebase
 
 class ExerciseViewModel : ViewModel() {
 
-//    private val _name = ""
-//    var name: String = ""
-//        get() = _name
-//
-//    private val _reps = 0
-//    var reps: Int = 0
-//        get() = _reps
-//
-//    private val _sets = 0
-//    var sets: Int = 0
-//        get() = _sets
-
     private var _exerciseList = mutableListOf<Exercise>()
     val exerciseList : MutableList<Exercise>
         get() = _exerciseList
-
-//    private var _exerciseInfo = mutableListOf<Exercise>()
-//    val exerciseInfo : List<Exercise>
-//        get() = _exerciseInfo
 
     var temp = mutableListOf<Exercise>()
 
     fun setExerciseInfo() {
         Firebase.database.reference.addValueEventListener(object: ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val userExerciseInfo = dataSnapshot.child("users")
-                    .child(FirebaseAuth.getInstance().uid.toString())
-                    .child("exerciseList").children
+                val userExerciseInfo = dataSnapshot.child("users").child(FirebaseAuth.getInstance().uid.toString()).child("exerciseList").children
 
                 for (fireBaseInfo in userExerciseInfo) {
                     val name = fireBaseInfo.child("name").getValue().toString()

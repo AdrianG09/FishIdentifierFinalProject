@@ -17,12 +17,6 @@ class ExerciseViewHolder(val binding: ListItemLayoutBinding) : RecyclerView.View
 
     private lateinit var currentExercise: Exercise
 
-//    init {
-//        binding.root.setOnClickListener { view ->
-//            view.findNavController().navigateUp()
-//        }
-//    }
-
     fun bindExercise(exercise: Exercise) {
         currentExercise = exercise
 

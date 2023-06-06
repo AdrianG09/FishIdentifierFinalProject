@@ -33,37 +33,10 @@ class MainFragment : Fragment() {
             val exerciseReps = binding.editExerciseReps.text.toString().toInt()
             val exerciseSets = binding.editExerciseSets.text.toString().toInt()
 
-//            viewModel.name = exerciseName
-//            viewModel.reps = exerciseReps
-//            viewModel.sets = exerciseSets
-
             viewModel.addNew(Exercise(exerciseName, exerciseReps, exerciseSets))
 
             binding.root.findNavController().navigateUp()
         }
-
-
-//        val args = MainFragmentArgs.fromBundle(requireArguments())
-//
-//        if(args.muscleType == "arms") {
-//            val adapter = ExerciseAdapter(viewModel.armsList)
-//            binding.recyclerView.adapter = adapter
-//        }
-//
-//        else if(args.muscleType == "chest") {
-//            val adapter = ExerciseAdapter(viewModel.chestList)
-//            binding.recyclerView.adapter = adapter
-//        }
-//
-//        else if(args.muscleType == "legs") {
-//            val adapter = ExerciseAdapter(viewModel.legsList)
-//            binding.recyclerView.adapter = adapter
-//        }
-//
-//        else if(args.muscleType == "back") {
-//            val adapter = ExerciseAdapter(viewModel.backList)
-//            binding.recyclerView.adapter = adapter
-//        }
 
         return binding.root
     }
