@@ -21,8 +21,8 @@ class ExerciseViewHolder(val binding: ListItemLayoutBinding) : RecyclerView.View
         currentExercise = exercise
 
         binding.nameText.text = currentExercise.name
-        binding.muscleText.text = currentExercise.reps.toString()
-        binding.equipmentText.text = currentExercise.sets.toString()
+        binding.muscleText.text = "${currentExercise.reps.toString()} Reps"
+        binding.equipmentText.text = "${currentExercise.sets.toString()} Sets"
     }
 
 }
